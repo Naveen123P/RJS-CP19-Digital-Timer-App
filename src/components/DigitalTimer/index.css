@@ -1,0 +1,100 @@
+/* Write your CSS here */
+.bg-container {
+  height: 100vh;
+  background-image: linear-gradient(to right, #ffffff, #cffcf1, #defafe);
+  display: flex;
+  flex-direction: column;
+  padding: 100px 50px;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  text-align: center;
+}
+.timer-status {
+  text-align: center;
+}
+.bg-container2 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.bg-img-container {
+  height: 400px;
+  width: 400px;
+  background-image: url('https://assets.ccbp.in/frontend/react-js/digital-timer-elapsed-bg.png');
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.timer-container {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.digital-timer {
+  color: #00d9f5;
+}
+.start-restart-container1 {
+  height: 400px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.start-restart-container2 {
+  display: flex;
+  justify-content: space-around;
+}
+.start-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.play-icon-img {
+  height: 20px;
+  width: 20px;
+  margin: 5px;
+}
+.start-text {
+  font-size: 15px;
+  font-weight: bold;
+}
+.set-time-limit-text {
+  font-size: 10px;
+  text-align: center;
+}
+.set-timer-buttons {
+  display: flex;
+  justify-content: center;
+}
+.plus-minus-buttons {
+  height: 20px;
+  width: 20px;
+  font-weight: bolder;
+  font-size: large;
+}
+.set-timer-limit-container {
+  height: 25px;
+  width: 50px;
+  background-color: #00d9f5;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.startOrPauseButton {
+  border: none;
+  background-color: transparent;
+}
+.plus-minus-buttons {
+  background-color: transparent;
+  border: none;
+}
