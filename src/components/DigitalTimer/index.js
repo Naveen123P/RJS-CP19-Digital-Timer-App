@@ -3,13 +3,26 @@ import {Component} from 'react'
 import './index.css'
 
 class DigitalTimer extends Component {
-  state = {isStart: false, initialTime: 25}
+  state = {isStart: false, timerLimitInMinutes: 25}
+
+
+
+  getElapsedSecondeInTimeFormate = () => {
+      const {timerLimitInMinutes, timeElapsedInSeconds} = this.state
+      const totalRemainingSeconds = timerLimitInMinutes*60 - 1
+      const minutes = Math.floor(totalRemainingSeconds/60)
+      const seconds = Math.floor(totalRemainingSeconds%60)
+      const stringifiedMinutes = minutes > 9 ? minutes : 0${minutes}
+      const stringifiedSeconds = seconds > 9 ? seconds : 0${seconds}
+
+      return ${stringifiedMinutes}:${stringifiedSeconds}
+  }  
 
   startOrPauseTime = () => {
     this.setState(prevState => ({isStart: !prevState.isStart}))
   }
 
-  toIncrease = () => {
+  toIncrease = () => {  
     const {isStart} = this.state
     if (!isStart) {
       this.setState(prevState => ({initialTime: prevState.initialTime + 1}))
@@ -35,13 +48,14 @@ class DigitalTimer extends Component {
     const startOrPoseAltText = isStart ? 'pause icon' : 'play icon'
     const runOrPauseText = isStart ? 'Running' : 'Paused'
     const startOrPauseText = isStart ? 'Pause' : 'Start'
+    const digitalTimer = this.getElapsedSecondeInTimeFormate()
     return (
       <div className="bg-container">
         <h1>Digital Timer</h1>
         <div className="bg-container2">
           <div className="bg-img-container">
             <div className="timer-container">
-              <h1 className="digital-timer">25:00</h1>
+              <h1 className="digital-timer">{digitalTimer}</h1>
               <p className="timer-status">{runOrPauseText}</p>
             </div>
           </div>
