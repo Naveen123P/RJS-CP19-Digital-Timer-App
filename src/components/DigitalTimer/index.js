@@ -1,28 +1,44 @@
 // Write your code here
+
 import {Component} from 'react'
 import './index.css'
 
 class DigitalTimer extends Component {
-  state = {isStart: false, timerLimitInMinutes: 25}
+  state = {isStart: false, initialTime: 25, timeElapsedInSeconds: 0}
 
+  componentDidMount() {
+    console.log('componentDidMount called')
 
+    this.timerId = setInterval(this.tick, 1000)
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount called')
+    clearInterval(this.timerId)
+  }
+
+  tick = () => {
+    this.setState(prevState => ({
+      timeElapsedInSeconds: prevState.timeElapsedInSeconds + 1,
+    }))
+  }
 
   getElapsedSecondeInTimeFormate = () => {
-      const {timerLimitInMinutes, timeElapsedInSeconds} = this.state
-      const totalRemainingSeconds = timerLimitInMinutes*60 - 1
-      const minutes = Math.floor(totalRemainingSeconds/60)
-      const seconds = Math.floor(totalRemainingSeconds%60)
-      const stringifiedMinutes = minutes > 9 ? minutes : 0${minutes}
-      const stringifiedSeconds = seconds > 9 ? seconds : 0${seconds}
+    const {initialTime, timeElapsedInSeconds} = this.state
+    const totalRemainingSeconds = initialTime * 60 - timeElapsedInSeconds
+    const minutes = Math.floor(totalRemainingSeconds / 60)
+    const seconds = Math.floor(totalRemainingSeconds % 60)
+    const stringifiedMinutes = minutes > 9 ? minutes : `0${minutes}`
+    const stringifiedSeconds = seconds > 9 ? seconds : `0${seconds}`
 
-      return ${stringifiedMinutes}:${stringifiedSeconds}
-  }  
+    return `${stringifiedMinutes}:${stringifiedSeconds}`
+  }
 
   startOrPauseTime = () => {
     this.setState(prevState => ({isStart: !prevState.isStart}))
   }
 
-  toIncrease = () => {  
+  toIncrease = () => {
     const {isStart} = this.state
     if (!isStart) {
       this.setState(prevState => ({initialTime: prevState.initialTime + 1}))
@@ -37,7 +53,8 @@ class DigitalTimer extends Component {
   }
 
   toReset = () => {
-    this.setState({isStart: false, initialTime: 25})
+    clearInterval(this.timerId)
+    this.setState({isStart: false, initialTime: 25, timeElapsedInSeconds: 0})
   }
 
   render() {
@@ -49,6 +66,7 @@ class DigitalTimer extends Component {
     const runOrPauseText = isStart ? 'Running' : 'Paused'
     const startOrPauseText = isStart ? 'Pause' : 'Start'
     const digitalTimer = this.getElapsedSecondeInTimeFormate()
+
     return (
       <div className="bg-container">
         <h1>Digital Timer</h1>
